@@ -1,0 +1,16 @@
+,0
+selling_mechanism,second_price
+max_tickets,100
+initial_ticket_price,20
+MEV_scale,30
+slots_per_epoch,32
+number_of_ticket_holders,10
+secondary_market,True
+price_vola,"{'mean': 0, 'sigma': 0.2}"
+agent_bidding_strategy,hist_obs_of_dist
+EIP-1559_max_tickets,4
+EIP-1559_adjust_factor,8
+AMM_adjust_factor,25
+expiry_period,
+reimbursement_factor,
+expected_vola,1.0202013400267558
