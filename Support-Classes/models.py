@@ -44,11 +44,11 @@ class TicketHolderAgent:
         self.costs = 0
         self.purchase_value_of_unredeemed_tickets = 0
         self.won_slots = []
-        self.discount_factor = 1 # to be adjusted later (Inter-slot discount factor per slot?)
+        self.discount_factor = 1 # Currently usually set to 1, see research report for details. Reflects the inter-slot dicount factor
 
     # needs to be adjusted if init function changes
     # Bidder are aware that tickets are expiring. In case the ticket is expiring the value is discounted.
-    def decide_bid_first_price(self, params): # Needs to include which ticket to buy, slot information etc?
+    def decide_bid_first_price(self, params): 
         """Calculate bid based on intrinsic valuation, funds, and aggressiveness."""
         
         # In this case the agents staticly bid evenly distributed between 10 and 50
@@ -146,8 +146,6 @@ class TicketHolderAgent:
 
         return min(max_bid, self.available_funds)
 
-
-    ## TO DO Include number of outstanding tickets in valuation
     
     def decide_EIP_1559_ticket(self, ticket_price, params):
 

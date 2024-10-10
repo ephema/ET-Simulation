@@ -4,7 +4,7 @@ import heapq
 import math
 from models import *
 
-### Util functions 
+#### Util functions 
 
 ### Pricing Mechanisms 
 
@@ -199,7 +199,7 @@ def purchase_tickets_AMM(ticket_holder, ticket_price, total_MEV_captured_by_prot
 
 
 def adjust_ticket_price_AMM(ticket_price, ticket_holder, tickets, params):
-    # Double Check
+    
     new_ticket_price = ticket_price
     if params['selling_mechanism'] == 'AMM-style':
         total_tickets_held = sum(1 for ticket in tickets if ticket.holder_id is not None and ticket.redeemed is False)
@@ -209,7 +209,7 @@ def adjust_ticket_price_AMM(ticket_price, ticket_holder, tickets, params):
         excess_tickets_held = total_tickets_held - target_tickets_held # Note that plus gas_in_block (+1) is not necessary as total_tickets_held is recalculated with the new ticket already issued
         print(f"AMM: Excess Tickets held: {excess_tickets_held}")
         adjust_factor = 1 / params['AMM_adjust_factor']
-        b = 6 # Defined for the purose of this simulation to 6, can be adjusted. For details read the paper.
+        b = 6 # Defined for the purose of this simulation to 6, can be adjusted. For details read the research report.
         new_ticket_price = (
                 math.exp(b) *
                 (math.exp(((excess_tickets_held + 1) / target_tickets_issued) * adjust_factor) 
@@ -257,8 +257,8 @@ def run_secondary_market_auction(holder, tickets, ticket_holders, current_slot, 
                 assign_ticket_to_holder(winning_bid, winning_bidder, ticket_for_sale) 
                 holder.available_funds += winning_bid
                 holder.earnings += winning_bid
-                #winning_bidder.earnings -= winning_bid
-                # holder.costs -= winning_bid # - tbd if revenue from secondary market should be counted as reducing costs
+                # winning_bidder.earnings -= winning_bid # Currently earnings are calculated as gross earnings
+                # holder.costs -= winning_bid # Currently secondary market revenues are not deducted from costs, could be challenged
                 print(f"Ticket {ticket_for_sale.id} sold from holder {holder.id} to {winning_bidder.id} for {winning_bid:.3f}")
             else:
                 print(f"Holder {holder.id} is not willing to sell the ticket for {winning_bid:.3f}")
