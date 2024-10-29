@@ -10,4 +10,4 @@ To run:
 - Import support classes
 - Run main file
 
-A detailed explanation of the research and simulation setup can be found in [this research report](https://drive.google.com/drive/u/0/folders/1G9Rln1UL1iOlm5NK4q8ggHr0mF0Zk1r0)
+A detailed explanation of the research and simulation setup can be found in [this research report]((https://drive.google.com/file/d/1Fgmld-XMFMO07oyAXhmjvlg0K6jWKXxY/view)
