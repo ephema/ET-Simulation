@@ -81,7 +81,7 @@ class TicketHolderAgent:
             else:
                 print(f"Error in calculating the discount factor in the bid calculation resulting in: {discount_factor_exp_tickets}")
         
-        print(f"Agent {self.id} bids {max_bid}") #Debug Print
+        #print(f"Agent {self.id} wants to bid {max_bid}. Available funds {self.available_funds}") #Debug Print
 
         return min(max_bid, self.available_funds)
 
