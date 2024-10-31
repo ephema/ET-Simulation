@@ -1,5 +1,6 @@
 import random
 import numpy as np
+import warnings
 
 # In this class the models of entities are defined including their functions (e.g. bidding behavior of agents)
 
@@ -66,7 +67,7 @@ class TicketHolderAgent:
         # In this scenario the agents have observed historical distirbution, estimate aware of their ability and the optimal research-based heuristic for FPA
         elif params['agent_bidding_strategy'] == 'optimal_heuristic_bidding':
             max_bid = params['MEV_scale'] * self.MEV_capture_rate * (1 - self.aggressiveness) * ((params['number_of_ticket_holders']-1)/params['number_of_ticket_holders'])
-        
+                    
         # Conservative bidding of ticket holder with the minimum observed value
         elif params['agent_bidding_strategy'] == 'conservative_min':
             max_bid = min(np.random.exponential(params['MEV_scale']) for _ in range(10))
@@ -80,7 +81,7 @@ class TicketHolderAgent:
             else:
                 print(f"Error in calculating the discount factor in the bid calculation resulting in: {discount_factor_exp_tickets}")
         
-        # print(f"Agent {self.id} bids {max_bid}") #Debug Print
+        print(f"Agent {self.id} bids {max_bid}") #Debug Print
 
         return min(max_bid, self.available_funds)
 
@@ -135,6 +136,8 @@ class TicketHolderAgent:
                         discount_factor_exp_tickets_sm = 1 - (1 - params['slots_per_epoch']/params['max_tickets'])**(remaining_time/params['slots_per_epoch'])
                         if 0 < discount_factor_exp_tickets_sm <= 1:
                             max_bid = max_bid * discount_factor_exp_tickets_sm
+                        elif discount_factor_exp_tickets_sm == 0:
+                            max_bid = 0 # The ticket is getting invalided in this slot (later) so it is worth nothing
                         else:
                             warnings.warn(f"Error in calculating the discount factor in the bid calculation resulting in: {discount_factor_exp_tickets_sm}", UserWarning)
                 
