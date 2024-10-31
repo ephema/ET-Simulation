@@ -1,0 +1,12 @@
+Results for Objectives of Simulation
+1. Decentralization Measurements
+Higehst market Share: 97.29999999999998
+Nakamote Coefficient: 1.0
+"Herfindahl–Hirschman index: 9468.3 out of 0 (decentralized) to 10,000.0 (monopoly)."
+2. MEV Capture
+Share_Protocol: 76.07 % (Share of value captured by the protocol of total MEV available)
+Share of captured by Protocol from Ticket Holder Revenue: 81.13 %
+Pricing Behavior
+3. Garman-Klass Volatility: 0.000 (timespan set to one epoch)
+4. Variance of Deltas (Price Smoothness/Variability): 0.004
+All metrics are averages over 10 runs
