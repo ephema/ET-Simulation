@@ -79,7 +79,7 @@ class TicketHolderAgent:
                 max_bid = max_bid * discount_factor_exp_tickets
             else:
                 print(f"Error in calculating the discount factor in the bid calculation resulting in: {discount_factor_exp_tickets}")
-
+        
         # print(f"Agent {self.id} bids {max_bid}") #Debug Print
 
         return min(max_bid, self.available_funds)
@@ -102,6 +102,9 @@ class TicketHolderAgent:
         # Conservative bidding of ticket holder with the minimum observed value
         elif params['agent_bidding_strategy'] == 'conservative_min':
             max_bid = min(np.random.exponential(params['MEV_scale']) for _ in range(10)) 
+
+        elif params['agent_bidding_strategy'] == 'optimal_heuristic_bidding' and params['secondary_market'] == True:
+            max_bid = params['MEV_scale'] * self.MEV_capture_rate * (1 - self.aggressiveness)
 
         # Pricing for JIT Slot auctions. Assumptions change, that MEV & Vola this slot is known 
         if params['max_tickets'] == 1:
