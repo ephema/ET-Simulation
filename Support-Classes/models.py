@@ -2,6 +2,7 @@ import random
 import numpy as np
 import warnings
 
+
 # In this class the models of entities are defined including their functions (e.g. bidding behavior of agents)
 
 class Ticket:
