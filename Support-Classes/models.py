@@ -4,6 +4,7 @@ import warnings
 
 # In this class the models of entities are defined including their functions (e.g. bidding behavior of agents)
 
+
 class Ticket:
     def __init__(self, id, params, previous_state=None):
         self.id = id
