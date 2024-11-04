@@ -39,7 +39,7 @@ class TicketHolderAgent:
             self.type = 'tail'
             self.available_funds = random.uniform(200, 500)
             self.MEV_capture_rate = random.uniform(0.6, 0.75)
-        self.aggressiveness = np.random.normal(0.15, 0.02) # np.random.normal(mean, std_dev) # random.uniform(0.01, 0.3) # to be adjusted later
+        self.aggressiveness = np.random.normal(0.15, 0.02) # np.random.normal(mean, std_dev) # random.uniform(0.01, 0.3) 
         self.vola_spec_factor = np.random.normal(1, 0.5) # Random distribution of builder volatility specialization
         if self.vola_spec_factor <=  0: self.vola_spec_factor = 0.1
         self.earnings = 0
