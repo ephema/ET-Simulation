@@ -257,6 +257,7 @@ def run_secondary_market_auction(holder, tickets, ticket_holders, current_slot, 
                 assign_ticket_to_holder(winning_bid, winning_bidder, ticket_for_sale) 
                 holder.available_funds += winning_bid
                 holder.earnings += winning_bid
+                holder.sec_m_earnings += winning_bid
                 # winning_bidder.earnings -= winning_bid # Currently earnings are calculated as gross earnings
                 # holder.costs -= winning_bid # Currently secondary market revenues are not deducted from costs, could be challenged
                 print(f"Ticket {ticket_for_sale.id} sold from holder {holder.id} to {winning_bidder.id} for {winning_bid:.3f}")

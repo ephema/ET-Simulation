@@ -43,6 +43,7 @@ class TicketHolderAgent:
         self.vola_spec_factor = np.random.normal(1, 0.5) # Random distribution of builder volatility specialization
         if self.vola_spec_factor <=  0: self.vola_spec_factor = 0.1
         self.earnings = 0
+        self.sec_m_earnings = 0
         self.costs = 0
         self.purchase_value_of_unredeemed_tickets = 0
         self.won_slots = []
@@ -72,6 +73,10 @@ class TicketHolderAgent:
         # Conservative bidding of ticket holder with the minimum observed value
         elif params['agent_bidding_strategy'] == 'conservative_min':
             max_bid = min(np.random.exponential(params['MEV_scale']) for _ in range(10))
+
+        else:
+            raise ValueError("The agent bidding strategy could not be recognized.")
+
 
         # Calculate the discount factor for expring tickets (see documentation for details)
         # Note that this implementation implicitly assumes that all tickets are always sold. For simplicity reasons we make this assumption as this is usually the case given any TH still has funds.
@@ -107,6 +112,9 @@ class TicketHolderAgent:
 
         elif params['agent_bidding_strategy'] == 'optimal_heuristic_bidding' and params['secondary_market'] == True:
             max_bid = params['MEV_scale'] * self.MEV_capture_rate * (1 - self.aggressiveness)
+        
+        else:
+            raise ValueError("The agent bidding strategy could not be recognized.")
 
         # Pricing for JIT Slot auctions. Assumptions change, that MEV & Vola this slot is known 
         if params['max_tickets'] == 1:
